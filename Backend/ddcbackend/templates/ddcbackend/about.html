@@ -1,0 +1,243 @@
+{% extends "ddcbackend/include/base.html"%} {% load static %} {% block content%}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/aboutus.css' %}" />
+{% endblock css%}
+
+<header>
+  <h1>
+    {% if current_lang == 'dzo' %} རྫོང་ཁ་ རང་བཞིན ་གྱིས་ བློ་སླབ་ ཤེས་ཐབས།
+    {%else %} Dzongkha Automatic Speech Recognition (ASR) System {% endif %}
+  </h1>
+</header>
+
+<div class="main">
+  <div class="aim-container">
+    <div class="aim">
+      <p>
+        <spam class="title"
+          >{% if current_lang == 'dzo' %} རྫོང་ཁ་ རང་བཞིན ་གྱིས་ བློ་སླབ་
+          ཤེས་ཐབས། {%else %} Dzongkha Automatic Speech Recognition System
+          {%endif %}</spam
+        ><br />
+        {% if current_lang == 'dzo'%}
+        ཇོང་ཀ་ཁ་སྐད་ངོས་ལེན་ལམ་ལུགས་འདི་ལག་ལེན་པ་ཚུ་གིས་སྐད་སླབ་མི་ཇོང་ཀ་གི་སྐད་ཡིག་ནང་སྐད་ཡིག་ཡིག་སྒྱུར་བཅོས་འབད་ནི་ལུ་ལག་ལེན་དང་ཨའི་ཨའི་ཨའི་ཨང་རིག་ལག་ལེན་འཐབ་མི་རིག་རྩལ་གོང་འཕེལ་ཅན་ཅིག་ཨིན།
+        ལག་ལེན་པ་ཚུ་གིས་ཁོང་རའི་ཨའི་སྐད་ནང་རིག་རྩལ་དང་འབྲེལ་མཐུད་འབད་ནི་ལུ་འཇམ་ཏོང་ཏོ་བཟོཝ་ཨིན།
+        {%else %} The Dzongkha Speech Recognition System is an advanced
+        technology that uses ML and AI algorithms to transcribe spoken Dzongkha
+        language into text, making it easier for users to communicate and
+        interact with technology in their native language. {% endif %}
+      </p>
+    </div>
+  </div>
+  <div class="obj-container">
+    <div class="grid">
+      <div class="grid-item">
+        <img src="../../static/images/Data_coll.png" alt="Image" />
+      </div>
+      <div class="grid-item">
+        <h2>
+          {% if current_lang == 'dzo' %} གནས་སྡུད་བསྡུ་ལེན་དང་སྔོན་འགུལ།
+          {%else%} Data collection and Preprocessing {%endif %}
+        </h2>
+        <p>
+          {% if current_lang == 'dzo' %}
+          ང་བཅས་ཀྱིས་ཇོང་ཀ་གོང་འཕེལ་ཚོགས་ཆུང་ལས་ཨེ་ཁེསི་ཨེལ་ཡིག་སྣོད་ནང་གནས་སྡུད་གྲངས་
+          ༡༦,༢༣༦ དེ་ཅིག་ཐོབ་ཅི། དེ་གི་ཤུལ་ལས་
+          ང་བཅས་ཀྱིས་གནས་སྡུད་འདི་དགོས་མཁོ་བཟོ་རྣམ་ནང་སྔོན་འགུལ་འབད་ཞིནམ་ལས་སྒྲ་དང་རྒྱབ་སྣོད་འདི་གློག་སྒྲོམ་སོ་སོ་ནང་བཞག་ཡི།
+          {%else%} We received around 16,236 datasets from the Dzongkha
+          Development Commission in the form of an Excel file. Afterward, we
+          preprocessed the dataset into the required format and stored the audio
+          and transcription in different folders. {%endif %}
+        </p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="grid-item">
+        <h2>
+          {% if current_lang == 'dzo' %} ཇོང་ཀ་རང་ལུགས་ཀྱི་ཁ་སྐད་ངོས་ལེན་
+          {%else%} Implement different deep learning model {%endif %}
+        </h2>
+        <p>
+          {% if current_lang == 'dzo' %}
+          ང་བཅས་ཀྱིས་འཕྲུལ་ཆས་འགྱུར་བཅོས་ཀྱི་རྣམ་ཅོག་ XLS-R Wav2Vec2 དང་
+          CNN-ResNet-BiLSTM ཚུ་རྩིས་ཏེ་དཔེ་ཅོག་ལེ་ཤ་སྦྱང་བ་དང་སྒྲིག་བཅོས་འབད་ཡི།
+          འདི་ཚུ་གི་གྲལ་ལས་ ང་བཅས་ཀྱིས་ XLS-R Wav2Vec2
+          འདི་ང་བཅས་ཀྱི་གཞི་རྟེན་དཔེ་ཅོག་སྦེ་འདི་གི་གྲུབ་འབྲས་དང་གྲུབ་འབྲས་དྲག་ཤོས་ལུ་བརྟེན་ཏེ་གདམ་ཁ་འབད་ཡི།
+          {%else%} We have trained and tuned several models, including the
+          Transformer model, XLS-R Wav2Vec2, and CNN-ResNet-BiLSTM. Among these
+          models, we have selected XLS-R Wav2Vec2 as our base model due to its
+          superior performance and efficiency. {%endif %}
+        </p>
+      </div>
+      <div class="grid-item">
+        <img src="../../static/images/train_tunin.png" alt="Image" />
+      </div>
+    </div>
+    <div class="grid">
+      <div class="grid-item">
+        <img src="../../static/images/Dl.png" alt="Image" />
+      </div>
+      <div class="grid-item">
+        <h2>
+          {% if current_lang == 'dzo' %} བཟོ་རྣམ་སྒྲིག་དང་སྦྱོང་བརྡར {%else%}
+          Model tuning and training {%endif %}
+        </h2>
+        <p>
+          {% if current_lang == 'dzo' %}
+          དཔེ་ཅོག་སྒྲིག་དང་སྒྲིག་བཅོས་ཀྱི་རྣམ་ཅོག་འདི་ང་བཅས་ཀྱི་གཞི་རྟེན་དཔེ་ཅོག་གཅིགཔ་འདི་འདི་
+          XLS-R Wav2Vec2 འདི་ ང་བཅས་ཀྱིས་སྦྱང་བ་དང་སྒྲིག་བཅོས་འབད་ཡི།
+          འདི་གི་གྲུབ་འབྲས་ཡར་སེང་འབད་ནི་གི་དཔའ་བཅམ་སྟེ་
+          ང་བཅས་ཀྱིས་ཚད་གཞི་མཐོ་དྲགས་ཀྱི་སྒྲིག་བཅོས་འབད་ཡི། {%else%} Our base
+          model is the XLS-R Wav2Vec2, which we trained and fine-tuned. In an
+          effort to enhance its performance, we have implemented hyperparameter
+          tuning. {%endif %}
+        </p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="grid-item">
+        <h2>
+          {% if current_lang == 'dzo' %} སྤེལ་སྦྱང་གི་ཐབས་ཤེས་ལག་ལེན་འཐབ་
+          {%else%} Implement transfer learning techniques {%endif %}
+        </h2>
+        <p>
+          {% if current_lang == 'dzo' %} XLS-R
+          Wav2Vec2འདི་ཕེསི་བུག་ཨེ་ཨའི་ཞིབ་འཚོལ་ཀྱིས་བཟོ་སྐྲུན་འབད་མི་སྐད་ཆ་ངོས་ལེན་གྱི་གནས་སྟངས་མཐར་འཁྱོལ་ཅན་ཅིག་ཨིན།
+          འདི་ Wave2Vec
+          བཟོ་བཀོད་ལུ་གཞི་བཞག་སྟེ་ཁ་སྐད་ལེ་ཤ་ཅིག་ནང་སྤྱོད་ལམ་ཡར་དྲག་གཏང་ནི་ལུ་སྐད་ཡིག་སོ་སོ་གི་སྐད་ཆ་ངོ་སྤྲོད་ལག་ལེན་འཐབ་ཨིན།
+          {%else%} XLS-R Wav2Vec2 is a state-of-the-art speech recognition model
+          developed by Facebook AI Research. It is based on the Wave2Vec
+          architecture and utilizes cross-lingual speech representations for
+          improved performance on a wide range of languages. {%endif %}
+        </p>
+      </div>
+      <div class="grid-item">
+        <img src="../../static/images/T_learning.png" alt="Image" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About Project -->
+<div class="Abt_prj">
+  <div class="prj-grid">
+    <h2>
+      About<br />
+      <spam class="dzongkha">རྫོང་ཁ</spam><br />Automatic Speech Recognition
+    </h2>
+  </div>
+  <div class="prj-grid">
+    <p>
+      The Dzongkha Automatic Speech Recognition (ASR) system is a project aimed
+      at developing a technology that can accurately translate spoken Dzongkha
+      into text. The project involves using advanced machine learning algorithms
+      and deep neural networks to train the system to recognize and transcribe
+      Dzongkha speech. The system will be able to recognize various accents and
+      dialects of the language and convert the spoken words into written text in
+      real-time.
+    </p>
+    <p>
+      It will help to promote the use of Dzongkha in modern communication
+      technology and make it easier for Bhutanese people to communicate in their
+      native language. It will also help to preserve the language and culture of
+      Bhutan by making it easier to document and store Dzongkha content.
+    </p>
+    <p>
+      Dzongkha is a tonal language with complex pronunciation rules, which makes
+      it difficult to train a speech recognition system. Additionally, there is
+      a lack of high-quality training data, which is essential for the
+      development of accurate speech recognition models. Despite these
+      challenges, the Dzongkha ASR system has the potential to revolutionize
+      communication technology in Bhutan and make the language more accessible
+      to its speakers.
+    </p>
+  </div>
+</div>
+
+<div class="card-container">
+  <h1>Team</h1>
+  <div class="cards">
+    <div class="card">
+      <div class="img-container">
+        <img src="../../static/images/sir.jpg" alt="" style="height: 235px" />
+      </div>
+      <h3>Pema Galey</h3>
+      <p>Guide</p>
+      <div class="icons">
+        <a href="#">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <!-- member1 -->
+    <div class="card">
+      <div class="img-container">
+        <img src="../../static/images/NSP.jpg" alt="" />
+      </div>
+      <h3>Ngawang Samten Pelzang</h3>
+      <p>Developer</p>
+      <div class="icons">
+        <a href="#">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Member2 -->
+    <div class="card">
+      <div class="img-container">
+        <img src="../../static/images/KR.jpg" alt="" />
+      </div>
+      <h3>Kinley Rabgay</h3>
+      <p>Developer</p>
+      <div class="icons">
+        <a href="#">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Member3 -->
+    <div class="card">
+      <div class="img-container">
+        <img src="../../static/images/Khentse.jpg" alt="" />
+      </div>
+      <h3>Khentse Dorji</h3>
+      <p>Developer</p>
+      <div class="icons">
+        <a href="#">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>&copy; 2023 - About Us</p>
+</footer>
+
+{% endblock content%}

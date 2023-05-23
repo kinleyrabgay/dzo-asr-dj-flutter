@@ -1,0 +1,93 @@
+{% extends "ddcbackend/admin/dashboard.html"%}
+{% load static %}
+{% block dashboard %}
+<div class="app-content">
+  <div class="app-content-header">
+    <h1 class="app-content-headerText">Transcriptions</h1>
+    <button onclick="addTranscription()">Add Transcription</button>
+  </div>
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <br><br>
+      <div id="modal-data">
+        <div class="">
+          {% if success %}
+          <p>Data imported successfully!</p>
+          {% endif %}
+          <h1>Import Data</h1>
+          <p>To import sentence and transcription data from an Excel file, ensure that the Excel file has two columns
+            with the appropriate headers: "sentence" and "transcription".</p>
+            <br>
+            Download Sample data: <a style="color:cornflowerblue" download="{% static 'test_data.xlsx' %}" href="">testdata.xlsx</a>
+            <br>
+            <br>
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="file" style="cursor:grabbing">Select File:
+                <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.26321 4.28033C4.78726 3.98744 4.78726 3.51256 5.26321 3.21967L10.1382 0.21967C10.3668 0.0790179 10.6768 0 11 0C11.3232 0 11.6332 0.0790177 11.8618 0.21967L16.7368 3.21967C17.2127 3.51256 17.2127 3.98744 16.7368 4.28033C16.2608 4.57322 15.4892 4.57322 15.0132 4.28033L12.2188 2.56066V9.50001C12.2188 9.91422 11.6731 10.25 11 10.25C10.3269 10.25 9.78125 9.91422 9.78125 9.50001V2.56066L6.98679 4.28033C6.51083 4.57322 5.73916 4.57322 5.26321 4.28033Z" fill="black"/>
+                  <path d="M2.875 9L2.875 13C2.875 13.8284 3.96631 14.5 5.3125 14.5H16.6875C18.0337 14.5 19.125 13.8284 19.125 13V9C19.125 8.17157 18.0337 7.5 16.6875 7.5H15.0625V6L16.6875 6C19.3799 6 21.5625 7.34315 21.5625 9V13C21.5625 14.6569 19.3799 16 16.6875 16H5.3125C2.62011 16 0.4375 14.6569 0.4375 13V9C0.4375 7.34315 2.62011 6 5.3125 6L6.9375 6L6.9375 7.5H5.3125C3.96631 7.5 2.875 8.17157 2.875 9Z" fill="black"/>
+                </svg>
+                  
+              </label>
+              <input type="file" name="file" id="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Import</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <div class="products-area-wrapper tableView">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Sentences</th>
+          <th>Transcription</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for transcription in transcriptions%}
+        <tr>
+          <td>{{transcription.id}}</td>
+          <td class="transcription_sentences">{{transcription.sentence}}</td>
+          <td>{{transcription.transcription}}</td>
+        </tr>
+        {% endfor%}
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+{% endblock dashboard %}
+
+
+{% block js %}
+<script>
+
+  const modal = document.querySelector('.modal');
+  const closeButton = document.querySelector('.close');
+  const acceptButton = document.querySelector('.mark-processed');
+
+
+  function addTranscription() {
+    modal.style.display = 'block';
+  }
+
+
+
+  // Add an event listener to the close button to hide the modal
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+</script>
+
+{% endblock js %}

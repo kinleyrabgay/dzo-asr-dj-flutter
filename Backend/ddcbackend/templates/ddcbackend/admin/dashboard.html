@@ -1,0 +1,28 @@
+{% extends "ddcbackend/include/base.html"%}
+{% load static %}
+
+{% block css %}
+    {% block doccss %}
+    {% endblock doccss %}
+    
+<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+{% endblock css%}
+
+{% block content%}
+
+<div class="app-container">
+    <!-- add sidebar here  -->
+    {% include "ddcbackend/admin/sidebar.html"%}
+
+    {% block dashboard %}
+    {% endblock dashboard %}
+
+    <!-- add the blocks here -->
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {% block js%}
+    {% endblock js%}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock javascript %}

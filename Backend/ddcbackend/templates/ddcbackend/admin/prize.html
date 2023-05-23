@@ -1,0 +1,211 @@
+{% extends "ddcbackend/admin/dashboard.html"%}
+{% load static %}
+{% block doccss %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/prize.css' %}">
+{% endblock doccss %}
+
+{% block dashboard %}
+<div class="app-content">
+  <div class="app-content-header">
+    <h1 class="app-content-headerText">Prize</h1>
+    <h2 id="countdown"></h2>
+  </div>
+  <br>
+  <div class="products-area-wrapper tableView">
+    <div class="prizes">
+      <div class="secondprize prize">
+        <svg width="70" height="70" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.55203 8C1.55203 4.43888 4.43888 1.55203 8 1.55203C11.5611 1.55203 14.448 4.43888 14.448 8C14.448 11.5611 11.5611 14.448 8 14.448C4.43888 14.448 1.55203 11.5611 1.55203 8Z"
+            fill="white" />
+          <path
+            d="M5.00008 6C5.00008 5.44772 5.4478 5 6.00008 5C6.55236 5 7.00008 5.44772 7.00008 6C7.00008 6.55228 6.55236 7 6.00008 7C5.4478 7 5.00008 6.55228 5.00008 6Z"
+            fill="white" />
+          <path
+            d="M9.00008 6C9.00008 5.44772 9.4478 5 10.0001 5C10.5524 5 11.0001 5.44772 11.0001 6C11.0001 6.55228 10.5524 7 10.0001 7C9.4478 7 9.00008 6.55228 9.00008 6Z"
+            fill="white" />
+          <path
+            d="M5.11953 9.57717C4.8882 9.23811 4.42642 9.14772 4.08406 9.37596C3.73941 9.60573 3.64628 10.0714 3.87604 10.416C4.12844 10.7655 4.54162 11.1374 4.89655 11.374C5.57173 11.8242 6.58984 12.25 8.00008 12.25C9.41032 12.25 10.4284 11.8242 11.1036 11.374C11.5005 11.1094 11.8325 10.7906 12.1241 10.416C12.3539 10.0714 12.2608 9.60573 11.9161 9.37596C11.5737 9.14772 11.112 9.23811 10.8806 9.57716C10.8784 9.58026 10.8721 9.58884 10.8625 9.60109C10.8432 9.62562 10.8092 9.66684 10.7595 9.71941C10.6601 9.8247 10.4996 9.97395 10.2716 10.126C9.82173 10.4258 9.08985 10.75 8.00008 10.75C6.91032 10.75 6.17843 10.4258 5.72861 10.126C5.50059 9.97395 5.3401 9.8247 5.24065 9.71941C5.19101 9.66684 5.15694 9.62562 5.13767 9.60109C5.12805 9.58884 5.12176 9.58027 5.11953 9.57717Z"
+            fill="white" />
+        </svg>
+
+
+        <label for="">Second Prize</label>
+        <h3>{{prize.second_prize}}/-</h3>
+      </div>
+      <div class="firstprize prize">
+        <svg width="70" height="70" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.00008 5C5.4478 5 5.00008 5.44772 5.00008 6C5.00008 6.55228 5.4478 7 6.00008 7C6.55237 7 7.00008 6.55228 7.00008 6C7.00008 5.44772 6.55237 5 6.00008 5Z"
+            fill="#F9F9F9" />
+          <path
+            d="M10.0001 5C9.4478 5 9.00008 5.44772 9.00008 6C9.00008 6.55228 9.4478 7 10.0001 7C10.5524 7 11.0001 6.55228 11.0001 6C11.0001 5.44772 10.5524 5 10.0001 5Z"
+            fill="#F9F9F9" />
+          <path
+            d="M4.01738 9.42589C4.10143 9.35517 4.20122 9.30255 4.31075 9.27408C4.37649 9.25693 4.44364 9.24903 4.51034 9.25H11.4898C11.5775 9.24872 11.6659 9.26277 11.7509 9.29299C11.8186 9.317 11.8817 9.35045 11.9389 9.39175C12.0468 9.46951 12.1282 9.57117 12.1807 9.6846C12.2116 9.75119 12.233 9.82308 12.2432 9.89853C12.2622 10.0372 12.2426 10.1816 12.1811 10.3145C12.1465 10.3893 12.0999 10.4574 12.0439 10.5164C11.7719 10.8479 11.4646 11.1334 11.1036 11.374C10.4284 11.8242 9.41032 12.25 8.00008 12.25C6.58985 12.25 5.57173 11.8242 4.89655 11.374C4.56389 11.1523 4.18006 10.8116 3.92539 10.482C3.83758 10.3775 3.77778 10.2486 3.75756 10.1069C3.75249 10.0715 3.74999 10.0359 3.75 10.0004C3.75 10.0005 3.75 10.0003 3.75 10.0004C3.75 9.85799 3.78969 9.72445 3.85862 9.61103C3.90018 9.54239 3.95331 9.47962 4.01738 9.42589Z"
+            fill="#F9F9F9" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.55203 8C1.55203 4.43888 4.43888 1.55203 8 1.55203C11.5611 1.55203 14.448 4.43888 14.448 8C14.448 11.5611 11.5611 14.448 8 14.448C4.43888 14.448 1.55203 11.5611 1.55203 8Z"
+            fill="#F9F9F9" />
+        </svg>
+        <label for="">First Prize</label>
+        <h3>{{prize.first_prize}}/-</h3>
+      </div>
+      <div class="thirdprize prize">
+        <svg width="70" height="70" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.55203 8C1.55203 4.43888 4.43888 1.55203 8 1.55203C11.5611 1.55203 14.448 4.43888 14.448 8C14.448 11.5611 11.5611 14.448 8 14.448C4.43888 14.448 1.55203 11.5611 1.55203 8Z"
+            fill="white" />
+          <path
+            d="M5.00008 6C5.00008 5.44772 5.4478 5 6.00008 5C6.55236 5 7.00008 5.44772 7.00008 6C7.00008 6.55228 6.55236 7 6.00008 7C5.4478 7 5.00008 6.55228 5.00008 6Z"
+            fill="white" />
+          <path
+            d="M9.00008 6C9.00008 5.44772 9.4478 5 10.0001 5C10.5524 5 11.0001 5.44772 11.0001 6C11.0001 6.55228 10.5524 7 10.0001 7C9.4478 7 9.00008 6.55228 9.00008 6Z"
+            fill="white" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4 10.25C4 9.83579 4.33579 9.5 4.75 9.5H11C11.4142 9.5 11.75 9.83579 11.75 10.25C11.75 10.6642 11.4142 11 11 11H4.75C4.33579 11 4 10.6642 4 10.25Z"
+            fill="white" />
+        </svg>
+
+        <label for="">Third Prize</label>
+        <h3>{{prize.third_prize}}/-</h3>
+      </div>
+    </div>
+    <br>
+    <div class="products-area-wrapper tableView">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Position</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kinley</td>
+            <td>1763829</td>
+            <td>First</td>
+          </tr>
+          <tr>
+            <td>Ngawang</td>
+            <td>1763829</td>
+            <td>Second</td>
+          </tr>
+          <tr>
+            <td>Kuenzang</td>
+            <td>1763829</td>
+            <td>Third</td>
+          </tr>
+
+          {%for data in audiodata%}
+          <tr data-id="{{ data.id }}" class="table-row">
+            <td>{{data.id}}</td>
+            <td id="gender-{{ data.id }}">{{data.user.gender}}</td>
+            <td id="age-{{ data.id }}">{{data.user.age}}</td>
+            <td>
+              <div id="transcription-{{ data.id }}" style="display: none;">{{ data.transcription }}</div>
+              <a href="#">{{ data.transcription }}</a>
+              <div id="audio_path-{{ data.id }}" style="display: none;">{{ data.audiopath }}</div>
+            </td>
+
+          </tr>
+          {% endfor%}
+
+        </tbody>
+      </table>
+
+    </div>
+    <div class="modal">
+      <div class="modal-content-prize">
+        <span class="close">&times;</span>
+        <br><br>
+        <div id="modal-data">
+          <form class="manage-prize-form" method="POST">
+            {% csrf_token %}
+            {{ prize_form.non_field_errors }}
+
+            <div class="">
+              {{ prize_form.time_of_result.errors }}
+              <label>Announcement Date</label>
+              {{ prize_form.time_of_result }}
+            </div>
+    
+            <div class="">
+              {{ prize_form.first_prize.errors }}
+              <label>First Prize</label>
+              {{ prize_form.first_prize }}
+            </div>
+    
+            <div class="">
+              {{ prize_form.second_prize.errors }}
+              <label>Second Prize</label>
+              {{ prize_form.second_prize }}
+            </div>
+
+            <div class="">
+              {{ prize_form.third_prize.errors }}
+              <label>Third Prize</label>
+              {{ prize_form.third_prize }}
+            </div>
+    
+            <button class="button login__submit" type="submit">
+              <span class="button__text">Set Prize</span>
+              <i class="button__icon fas fa-chevron-right"></i>
+            </button>				
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="prizeform">
+      <button onclick="(managePrize())">Manage Prizes</button>
+    </div>
+    <br>
+  </div>
+</div>
+{% endblock dashboard %}
+
+
+{% block js %}
+<script>
+
+  const modal = document.querySelector('.modal');
+  const closeButton = document.querySelector('.close');
+  const acceptButton = document.querySelector('.mark-processed');
+
+
+  function managePrize() {
+    modal.style.display = 'block';
+  }
+  // Add an event listener to the close button to hide the modal
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  var remainingTime = '{{ remaining_time.total_seconds }}';
+    var countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        var hours = Math.floor(remainingTime / 3600);
+        var minutes = Math.floor((remainingTime % 3600) / 60);
+        var seconds = Math.floor(remainingTime % 60);
+
+        var formattedTime = hours.toString().padStart(2, '0') + ':' +
+                            minutes.toString().padStart(2, '0') + ':' +
+                            seconds.toString().padStart(2, '0');
+
+        countdownElement.innerHTML = "Time of Result: "+formattedTime;
+
+        if (remainingTime > 0) {
+            remainingTime--;
+            setTimeout(updateCountdown, 1000);
+        }
+    }
+    updateCountdown();
+
+</script>
+
+{% endblock js %}

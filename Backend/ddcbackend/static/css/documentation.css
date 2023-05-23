@@ -1,0 +1,79 @@
+.create-doc-container{
+    margin: 20px 20px 0px 20px;
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    color: black;
+    overflow: scroll;
+
+}
+
+.docwritesection{
+ 
+    flex: 1;
+    
+
+}
+
+.docwritesection form p input { 
+    padding: 10px;
+    width: 100%;
+    background-color: #101827;
+    color: white;
+    margin: 10px 0;
+    outline: none;
+    border: none;
+
+}
+
+.docwritesection form p label { 
+    
+    display: none;
+
+}
+
+.docwritesection form p textarea { 
+    padding: 10px;
+    width: 100%;
+    height: 50vh;
+    background-color: #101827;
+    color: white;
+    margin: 10px 0;
+    outline: none;
+    border: none;
+    display: none;
+
+}
+
+
+
+.docpreviewsection{
+    flex: 1;
+    /* background-color: #101827; */
+    padding: 5px 5px 5px 10px;
+
+}
+
+
+
+
+/* view documentation  */
+.view-doc-content {
+    padding: 30px 60px 0 60px;
+    background-color: white;
+    height: 100%;
+    flex: 1;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: black;
+    overflow: scroll;
+  }
+
+  .doc-footer{
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: rgb(153, 161, 197); */
+  }

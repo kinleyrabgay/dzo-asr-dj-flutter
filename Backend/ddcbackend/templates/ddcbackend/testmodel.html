@@ -1,0 +1,170 @@
+{% extends "ddcbackend/include/base.html"%}
+{% load static %}
+{% block content%}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/testmodel.css' %}">
+{% endblock css%}
+
+<div class="banner-container">
+    {% include "ddcbackend/include/nav.html"%}
+
+    <div class="heading-card-container">
+
+        <div class="card-recording-container-test-model">
+            <div class="card-recording-test-model">
+                <h4>Upload Audio</h4>
+                <br>
+                <form method="POST" enctype="multipart/form-data" id="audioForm">
+                    {% csrf_token %}
+                    <label for="audio_input" class="upload-audio">
+                        Choose a file
+                        <input type="file" name="audio_input" id="audio_input">
+                    </label>
+                    <!-- <button id="record-button" onclick="toggleRecording()" type="button">Record</button>
+                    <br> -->
+                    <br>
+                    <div id="play_audio">
+                        <!-- <source src="{{ audio_file_url }}"  type="audio/mpeg" > -->
+                        <audio src="{{ audio_file_url }}" controls></audio>
+                    </div>
+                    <br>
+                    <div class="selectmodel">
+                        <label for="selectmodel">Select model</label>
+                        <select name="selectmodel" id="selectmodel">
+                            <option value="1">Wav2Vac2XLR</option>
+                            <option value="2">Wav2Vac2XLR with LM</option>
+                            <option value="3">Wav2Vac2XLR Distilled with LM</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit">Transcribe Audio</button>
+                    <br>
+                </form>
+                <textarea class="transcribe-textarea-test-model" name="" id="text_area" cols="60"
+                    rows="5">{{transcribed_text}}</textarea>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include "ddcbackend/include/footer.html"%}
+
+
+{% endblock%}
+
+{% block javascript %}
+<script src="https://unpkg.com/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
+
+<script>
+
+
+    let mediaRecorder;
+    let chunks = [];
+    let recordedblob
+    var audioForm = document.getElementById('audioForm');
+    var text_area = document.getElementById('text_area');
+
+    // function toggleRecording() {
+    //     if (mediaRecorder && mediaRecorder.state === "recording") {
+    //         // stop recording
+    //         mediaRecorder.stop();
+    //         document.getElementById('record-button').innerHTML = "Record"
+    //     } else {
+    //         // start recording
+    //         document.getElementById('record-button').innerHTML = "Recording...."
+    //         navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+    //             mediaRecorder = new MediaRecorder(stream);
+
+    //             mediaRecorder.addEventListener("dataavailable", function (event) {
+    //                 chunks.push(event.data);
+    //             });
+
+    //             mediaRecorder.addEventListener("stop", function () {
+    //                 recordedBlob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+    //                 chunks = [];
+    //                 const audioUrl = URL.createObjectURL(recordedBlob);
+    //                 const audioElement = document.createElement('audio');
+    //                 audioElement.setAttribute('src', audioUrl);
+    //                 audioElement.controls = true;
+    //                 while (playAudio.firstChild) {
+    //                     playAudio.removeChild(playAudio.firstChild);
+    //                 }
+    //                 playAudio.appendChild(audioElement);
+    //             });
+
+    //             mediaRecorder.start();
+    //         });
+    //     }
+    // }
+
+    const audioInput = document.getElementById('audio_input');
+    const playAudio = document.getElementById('play_audio');
+
+
+
+    audioInput.addEventListener('change', function () {
+        
+        for (let i = 0; i < audioInput.files.length - 1; i++) {
+            audioInput.files[i].remove();
+            }
+
+        const audioFile = audioInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            recordedblob = new Blob([event.target.result], { type: file.type });
+        };
+        reader.readAsArrayBuffer(audioFile);
+
+        const audioUrl = URL.createObjectURL(audioFile);
+        // Create audio element and set its source to the selected file URL
+        const audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', audioUrl);
+        audioElement.controls = true
+        while (playAudio.firstChild) {
+            playAudio.removeChild(playAudio.firstChild);
+        }
+        playAudio.appendChild(audioElement) // Add audio element to page
+        //   audioElement.play(); // Play audio file
+    });
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const csrftoken = Cookies.get('csrftoken');
+        // Get selected model value
+        const selectedModel = document.getElementById('selectmodel').value;
+
+        // Get selected file
+        const fileInput = document.getElementById('audio_input');
+        const selectedFile = fileInput.files[0];
+
+        // Create form data object
+        const formData = new FormData(audioForm);
+        // formData.append('audio_input', recordedBlob, "audio.ogg");
+        // formData.append('selectmodel', selectedModel);
+
+        // Send form data to backend
+        const xhr = new XMLHttpRequest();
+        console.log(formData)
+        xhr.open("POST", "{% url 'transcribe_audio_withLM' %}");
+        xhr.setRequestHeader('X-CSRFToken', csrftoken);
+        xhr.addEventListener('load', function () {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                // handle response data here
+                text_area.innerHTML = response['transcription']
+            } else {
+                console.error('Request failed. Returned status code:', xhr.status);
+            }
+        });
+        xhr.send(formData);
+    });
+
+
+
+</script>
+{% endblock%}

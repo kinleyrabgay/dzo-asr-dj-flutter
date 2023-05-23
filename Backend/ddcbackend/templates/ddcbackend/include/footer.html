@@ -1,0 +1,135 @@
+{% load static %}
+
+<footer class="footer">
+  <div class="footer__addr">
+    <h1 class="footer__logo">DSAR</h1>
+
+    <h2>
+      {% if current_lang == 'dzo' %} འབྲེལ་བ་འཐབ་ {% else %} Contact {% endif %}
+    </h2>
+    <br />
+    <address>
+      <p>{% if current_lang == 'dzo' %} ༡༠༠༡༡༡ {%else %} 1100111 {% endif %}</p>
+      <p>
+        {% if current_lang == 'dzo' %} ཚན་རིག་དང་འཕྲུལ་རིག་མཐོ་རིམ་སློབ་གྲྭ་
+        {%else %} College of Science and Technology {% endif %}
+      </p>
+      <p>
+        {% if current_lang == 'dzo' %} རིན་ཆེན་སྒྲོན་ འབྲུག་ {% else %}
+        Rinchending, Bhutan {% endif %}
+      </p>
+      <a class="footer__btn" href="mailto:cst@gmail.com"
+        >{% if current_lang == 'dzo' %} ང་བཅས་ལུ་གློག་འཕྲིན་གཏང་། {% else %}
+        Email Us {% endif %}</a
+      >
+    </address>
+  </div>
+
+  <ul class="footer__nav">
+    <li class="nav__item">
+      <h2 class="nav__title">
+        {% if current_lang == 'dzo' %} མཉམ་འབྲེལ་པ་ {%else %} Partners {%endif%}
+      </h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="https://www.dzongkha.gov.bt/">
+            {% if current_lang == 'dzo' %} ཌོན་ཀ་གོང་འཕེལ་ཚོགས་ཆུང་ {% else %}
+            Dzongkha Development Commission {% endif %}</a
+          >
+        </li>
+
+        <li>
+          <a href="https://www.cst.edu.bt/index.php/en/"
+            >{% if current_lang == 'dzo' %}
+            ཚན་རིག་དང་འཕྲུལ་རིག་མཐོ་རིམ་སློབ་གྲྭ་ {%else %} College of Science
+            and Technology {% endif %}</a
+          >
+        </li>
+
+        <li>
+          <a href="#"
+            >{% if current_lang == 'dzo' %} ཁ་གསལ་གྱི་བརྡ་སྐོར། {%else %}
+            Alternative Ads {% endif %}</a
+          >
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav__item nav__item--extra">
+      <h2 class="nav__title">
+        {% if current_lang == 'dzo' %} འཕྲུལ་རིག་ {%else %} Technology {%endif%}
+      </h2>
+
+      <ul class="nav__ul nav__ul--extra">
+        <li>
+          <a href="#"
+            >{% if current_lang == 'dzo' %} བསམ་ཤེས་བཟོ་བཀོད་ {%else %}
+            Artificial Intelligence {%endif%}</a
+          >
+        </li>
+        <li>
+          <a href="#"
+            >{% if current_lang == 'dzo' %} རང་བཞིན་གྱི་སྐད་ཡིག་བཟོ་སྐྲུན་
+            {%else %} Natural Langauage Processing {%endif%}
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            {% if current_lang == 'dzo' %} རང་བཞིན་གྱིས་ཁ་སྐད་ངོས་ལེན་ {%else %}
+            Automatic Speech Recognition {%endif%}</a
+          >
+        </li>
+
+        <li>
+          <a href="#">Transformer</a>
+        </li>
+
+        <li>
+          <a href="#">Tensorflow</a>
+        </li>
+
+        <li>
+          <a href="#">pyTorch</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav__item">
+      <h2 class="nav__title">
+        {% if current_lang == 'dzo' %} ཁྲིམས་མཐུན་།་ {%else %} Legal {%endif%}
+      </h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">
+            {% if current_lang == 'dzo' %} སྒེར་སྡེབ་གི་སྲིད་བྱུས་ {%else %}
+            Privacy Policy {%endif%}</a
+          >
+        </li>
+
+        <li>
+          <a href="#">
+            {% if current_lang == 'dzo' %} ལག་ལེན་གྱི་གནས་ཚིག་ {%else %} Terms
+            of Use {%endif%}</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="legal">
+    <p>
+      &copy; {% if current_lang == 'dzo' %} ༢༠༢༣ {%else %} 2023 {%endif%} CST.
+      {% if current_lang == 'dzo' %} འཁྲུན་ཆོད་ག་ར་སྲུང་བཞག་ནུག། {%else %} All
+      rights reserved {%endif%}
+    </p>
+
+    <div class="legal__links">
+      <span
+        >Made by <span class="heart">♥</span> final year student of CST</span
+      >
+    </div>
+  </div>
+</footer>

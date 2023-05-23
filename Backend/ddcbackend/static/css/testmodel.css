@@ -1,0 +1,148 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    
+
+}
+body{
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1500px;
+}
+
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: inherit;
+}
+
+a:active {
+  text-decoration: underline;
+  color: inherit;
+}
+
+
+.banner-container{
+    background-image: url('../images/5.png');
+    background-repeat:no-repeat;
+    min-height: 90vh;
+    background-size:cover;
+    
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+   color: rgb(255, 255, 255);
+    
+}
+
+.logo-container img{
+    height: 2.5rem;
+    border-radius: 100%;
+}
+.logo-container {
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+.nav-items-container span{
+    color: white;
+    padding: 20px;
+    font-weight:700;
+
+}
+
+.heading-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-height: 80vh;
+}
+
+.heading-container{
+    width: 50%;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.title{
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.subtitle{
+    color: rgb(255, 182, 65);
+}
+
+button{
+    padding: 15px 72px;
+    font-weight: 600;
+    background-image: linear-gradient(rgb(0, 89, 255),rgb(0, 157, 255));
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.card-recording-container-test-model{
+    max-width: 1400px;
+    display: flex;
+    min-width: 300px;
+    justify-content: center;
+    
+}
+
+.card-recording-test-model{
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+input[type=file]{
+    display: none;
+}
+
+.upload-audio{
+    padding: 5px;
+    color: rgb(0, 106, 255);
+    border-radius: 5px;
+   font-weight: 700;
+}
+.transcribe-textarea-test-model{
+    background-color: rgb(0, 25, 60);
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 2rem;
+    width: 95%;
+}
+
+.selectmodel select{
+    padding: 10px;
+}
+

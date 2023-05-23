@@ -1,0 +1,194 @@
+{% extends "ddcbackend/include/base.html"%}
+{% load static %}
+{% block content%}
+<div class="banner-container">
+    {% include "ddcbackend/include/nav.html"%}
+
+    <div class="heading-card-container">
+        <div class="heading-container">
+            <h1 class="title">
+                <span class="dzongkhatitle"> རྫོང་ཁ་</span>
+                {% if current_lang == 'dzo' %}
+                རང་བཞིན ་གྱིས་ བློ་སླབ་ ཤེས་ཐབས།
+                {% else %}
+                Automatic Speech Recognition
+                {% endif %}
+
+            </h1>
+            <br>
+            <br>
+            <h2 class="subtitle">
+                {% if current_lang == 'dzo' %}
+                ང་བཅས་རའི་ རྒྱལ་ཡོངས་སྐད་ཡིག་འདི་ འཕྲུལ་རིག་གི་ཐོག་ལས་ ནུས་ཤུགས་ཅན་བཟོ་ནི། <br>
+                འབྲུག་མི་ཚུ་གི་དོན་ལུ་ཨེས་ཨར་ཞིབ་འཚོལ་དང་གོང་འཕེལ་ཡར་རྒྱས་གཏང་།
+                {% else %}
+                Empowering Our National Language through Technology: Advancing ASR
+                Research and Development for Bhutanese
+                {% endif %}
+            </h2>
+            <br>
+            <br>
+            <a href="{% url 'test_model' %}"><button class="">
+
+                    {% if current_lang == 'dzo' %}
+                    འགོ་བཙུགས་ནི།
+                    {% else %}
+                    Get Started
+                    {% endif %}
+                </button></a>
+
+        </div>
+        <div class="card-recording-container">
+            <div class="card-recording">
+                <h4>
+                    {% if current_lang == 'dzo' %}
+                    སྒྲ་ཕབ་ལེན།
+                    {% else %}
+                    Upload Audio
+                    {% endif %}
+                </h4>
+                <br>
+                <form method="POST" action="{% url 'transcribe_audio' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="audio_input" class="upload-audio">
+                        {% if current_lang == 'dzo' %}
+                        ཤོག་འཛིན་ཅིག་གདམ་ཁ་འབད།
+                        {% else %}
+                        Choose a file
+                        {% endif %}
+
+                        <input type="file" name="audio_input" id="audio_input">
+                    </label>
+                    <div id="play_audio">
+                        <!-- <source src="{{ audio_file_url }}"  type="audio/mpeg" > -->
+                        <audio src="{{ audio_file_url }}" controls></audio>
+                    </div>
+                    <br>
+                    <button type="submit">
+                        {% if current_lang == 'dzo' %}
+                        སྒྲ་བྲི་བ།
+                        {% else %}
+                        Transcribe Audio
+                        {% endif %}
+
+                    </button>
+                    <br>
+                </form>
+                <textarea class="transcribe-textarea" name="" id="" cols="40" rows="5">{{transcribed_text}}</textarea>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-card-containers">
+        <div class="service-card-wrapper">
+            <a href="test_model">
+                <dic class="service-card1">
+                    <div class="service-card-overlay">
+                        <!-- <h4> Real Time Voice Recognition</h4> -->
+                        <span>
+                            {% if current_lang == 'dzo' %}
+                            དཔེ་འདི་གློག་བརྙན་ཡོངས་ཁྱབ་ནང་བརྟག་དཔྱད་འབད།
+                            {% else %}
+                            Test the model in full screen
+                            {% endif %}
+                        </span>
+                    </div>
+                </dic>
+            </a>
+        </div>
+        <div class="service-card-wrapper">
+            <a href="view_documentation/14">
+                <dic class="service-card2">
+                    <div class="service-card-overlay">
+                        <!-- <h4>Generate Caption</h4> -->
+                        <span>
+                            {% if current_lang == 'dzo' %}
+                            ཡིག་ཆ་ལས་ལྷབ་འབད།
+                            {% else %}
+                            Learn from the documentation
+                            {% endif %}
+                        </span>
+                    </div>
+                </dic>
+            </a>
+        </div>
+        <div class="service-card-wrapper">
+            <a href="about">
+                <dic class="service-card3">
+                    <div class="service-card-overlay">
+                        <!-- <h4>Mobile Version</h4> -->
+                        <span>
+                            {% if current_lang == 'dzo' %}
+                            ང་བཅས་ཀྱི་སྐོར་ལས་
+                            {% else %}
+                            About us
+                            {% endif %}
+                        </span>
+                    </div>
+                </dic>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+<div class="details-containers">
+    <div class="quote_container">
+
+        {% if current_lang == 'dzo' %}
+        ཁྱོད་ཀྱི་ཚིག་ཚུ་གོ་བཅུག་ དེ་ལས་ང་བཅས་ཀྱི་ཨེས་ཨར་ལམ་ལུགས་ཀྱིས་དེ་ཚུ་མི་ཚེ་ནང་འབག་བཅུག། ག་ཅི་སྦེ་ཟེར་བ་ཅིན་
+        སྐད་ཆ་རེ་རེ་བཞིན་དུ་ཡིག་སྒྱུར་འབད་ནི་དང་ལོ་རྒྱུས་རེ་རེ་བཞིན་དུ་སླབ་དགོཔ་ཨིན།
+        {% else %}
+        "Let your words be heard, and let our ASR system bring them to life - because every voice deserves to be
+        transcribed
+        and every story deserves to be told!"
+        {% endif %}
+
+
+    </div>
+    <br>
+
+    <a href="{% url 'test_model' %}"><button class="">
+            {% if current_lang == 'dzo' %}
+            འགོ་བཙུགས་ནི།
+            {% else %}
+            Get Started
+            {% endif %}
+
+        </button></a>
+</div>
+
+{% include "ddcbackend/include/footer.html"%}
+
+
+{% endblock%}
+
+{% block javascript %}
+<script>
+
+    const audioInput = document.getElementById('audio_input');
+    const playAudio = document.getElementById('play_audio');
+
+
+
+    audioInput.addEventListener('change', function () {
+        const audioFile = audioInput.files[0];
+        const audioUrl = URL.createObjectURL(audioFile);
+        // Create audio element and set its source to the selected file URL
+        const audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', audioUrl);
+        audioElement.controls = true
+        while (playAudio.firstChild) {
+            playAudio.removeChild(playAudio.firstChild);
+        }
+        playAudio.appendChild(audioElement) // Add audio element to page
+        //   audioElement.play(); // Play audio file
+    });
+
+
+
+
+
+</script>
+{% endblock%}

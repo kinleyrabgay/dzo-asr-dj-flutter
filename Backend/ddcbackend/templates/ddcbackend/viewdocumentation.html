@@ -1,0 +1,96 @@
+{% extends "ddcbackend/include/base.html"%}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/documentation.css' %}">
+{% endblock css%}
+
+{% block content%}
+
+<div class="app-container">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="app-icon">
+                <div class="account-info-picture">
+                    <img src="{% static 'images/logo.png' %}" alt="logo" srcset="">
+                </div>
+                <h1>DASR</h1>
+            </div>
+        </div>
+        <ul class="sidebar-list">
+            {% for post in posts %}
+            <li class="sidebar-list-item post-title view_documentation_{{ post.id }}" data-post-id="{{ post.id }}">
+                <a href="#">
+                    <span>{{ post.title }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="account-info">
+        <a href="{% url 'home' %}">
+            <div class="account-info-picture">
+                <img src="{% static 'images/backarrow.png' %}"
+                    alt="Account">
+            </div>
+        </a>
+    </div>
+
+    </div>
+    <div class="view-doc-content">
+        <div class="col-sm-8" id="post-details">
+            {{ postscontent | safe}}            
+        </div>
+        <div>
+            <hr>
+            <div class="doc-footer">
+                <span>DASR</span>
+                <span> © Copyright Dzongkha ASR 2020-2023.</span>
+                <a onclick="editdoc()">Edit</a>
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    const postTitles = document.querySelectorAll('.post-title');
+    // console.log(postTitles)
+    postTitles.forEach(title => {
+        console.log(title)
+        title.addEventListener('click', () => {
+            const postId = title.dataset.postId;
+            window.location.href = `/view_documentation/${postId}`
+        });
+    });
+
+    function editdoc(){
+            // get the current URL
+        var url = window.location.href;
+        // find the index of the last slash character
+        var lastSlashIndex = url.lastIndexOf('/');
+        // extract the id value from the URL
+        var id = url.substring(lastSlashIndex + 1);
+
+        window.location.href = `/create_documentation_post_id/${id}`
+    }
+
+    var url = window.location.href;
+    // find the index of the last slash character
+    var lastSlashIndex = url.lastIndexOf('/');
+    // extract the id value from the URL
+    var id = url.substring(lastSlashIndex + 1);
+    var classname = '.view_documentation_'+id
+    console.log(classname)
+    const activeElement = document.querySelectorAll(classname);
+    console.log(activeElement)
+    activeElement[0].classList.add("active");
+    
+
+
+</script>
+{% endblock javascript %}

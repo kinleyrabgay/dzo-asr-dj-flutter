@@ -1,0 +1,57 @@
+
+{% extends "ddcbackend/include/base.html"%}
+{% load static %}
+{% block content%}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" method="POST">
+				{% csrf_token %}
+
+				{{ register_form.non_field_errors }}
+				<div class="login__field">
+					{{ register_form.username.errors }}
+					<i class="login__icon fas fa-user"></i>
+					{{ register_form.username }}
+				</div>
+				<div class="login__field">
+					{{ register_form.email.errors }}
+					<i class="login__icon fas fa-user"></i>
+					{{ register_form.email }}
+				</div>
+				<div class="login__field">
+					{{ register_form.password1.errors }}
+					<i class="login__icon fas fa-user"></i>
+					{{ register_form.password1 }}
+				</div>
+				<div class="login__field">
+					{{ register_form.password2.errors }}
+					<i class="login__icon fas fa-user"></i>
+					{{ register_form.password2 }}
+				</div>
+				
+
+				<button class="button login__submit" type="submit">
+					<span class="button__text">Sign In Now</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>				
+			</form>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
+</div>
+
+{% endblock %}

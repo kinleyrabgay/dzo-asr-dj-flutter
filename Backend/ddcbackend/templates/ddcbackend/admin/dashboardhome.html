@@ -1,0 +1,95 @@
+{% extends "ddcbackend/admin/dashboard.html"%}
+{% load static %}
+{% block doccss %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/dashboardhome.css' %}">
+
+{% endblock doccss %}
+
+
+{% block dashboard %}
+<div class="dashboard-container">
+    <div class="cards-container">
+        <div class="card">
+            <div class="card-header">
+                Number of speaker
+            </div>
+            <div class="card-body">
+                <div class="card-value">
+                    29
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Vocab Size
+            </div>
+            <div class="card-body">
+                <div class="card-value">
+                    66
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Total Dataset
+            </div>
+            <div class="card-body">
+                <div class="card-value">
+                    16558
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Total Duration
+            </div>
+            <div class="card-body">
+                <div class="card-value">
+                    21 hr
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="table-header">
+            Recent Audio
+        </div>
+        <div class="table-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Transcription</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    {% for data in recent_audio%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{% if data.user.gender == 'M' %}
+                            Male
+                          {% else %}
+                            Female
+                          {% endif %}</td>
+                        <td>{{data.user.age}}</td>
+                        <td>{{ data.transcription }}</td>
+
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+       
+        
+    </div>
+</div>
+
+
+
+{% endblock dashboard %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock js %}

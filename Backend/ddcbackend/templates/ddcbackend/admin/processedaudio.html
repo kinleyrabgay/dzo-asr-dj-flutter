@@ -1,0 +1,175 @@
+{% extends "ddcbackend/admin/dashboard.html"%}
+{% load static %}
+{% block dashboard %}
+<div class="app-content">
+  <div class="app-content-header">
+    <h1 class="app-content-headerText">Audio</h1>
+  </div>
+  <br>
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-data">
+        Gender
+        <div id="modelgender">
+
+        </div>
+        <br>
+        Age
+        <div id="modelage">
+
+        </div>
+        <br>
+        Transcription
+        <div id="modeltranscription" style="font-size: 25px;">
+
+        </div>
+        <br>
+        Audio
+        <div id="modelaudio">
+
+        </div>
+        <br>
+        <div class="modelsubmit">
+          <button class="mark-processed">Reject</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="products-area-wrapper tableView">
+    <div class="products-area-wrapper tableView">
+      <table>
+        <thead>
+          <tr>
+            <th>Id </th>
+            <th>Gender </th>
+            <th>Age </th>
+            <th>transcription </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {%for data in audiodata%}
+          <tr data-id="{{ data.id }}" class="table-row">
+            <td>{{forloop.counter}}</td>
+            <td id="gender-{{ data.id }}">
+              {% if data.user.gender == 'M' %}
+                Male
+              {% else %}
+                Female
+              {% endif %}</td>
+            <td id="age-{{ data.id }}">{{data.user.age}}</td>
+            <td>
+              <div id="transcription-{{ data.id }}" style="display: none;">{{ data.transcription.sentence }}</div>
+              <a href="#">{{ data.transcription.sentence }}</a>
+              <div id="audio_path-{{ data.id }}" style="display: none;">{{ data.audiopath }}</div>
+            </td>
+
+          </tr>
+          {% endfor%}
+
+        </tbody>
+      </table>
+
+    </div>
+
+
+  </div>
+</div>
+{% endblock dashboard %}
+
+{% block js %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+<script>
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  // Get all the table rows
+  const rows = document.querySelectorAll('.table-row');
+  // Add a click event listener to each row
+  rows.forEach(row => {
+    row.addEventListener('click', e => {
+      e.preventDefault();
+
+      // Get the ID of the row's data
+      const id = row.dataset.id;
+
+      // Get the additional data from the hidden div
+      const gender = document.querySelector(`#gender-${id}`).innerHTML;
+      const age = document.querySelector(`#age-${id}`).innerHTML;
+      const transcription = document.querySelector(`#transcription-${id}`).innerHTML;
+      const audiopath = document.querySelector(`#audio_path-${id}`).innerHTML;
+
+      // Update the pop-up window with the additional data
+
+      const modalgenderElement = document.getElementById('modelgender');
+      const modalageElement = document.getElementById('modelage');
+      const modaltranscriptionElement = document.getElementById('modeltranscription');
+      const modalaudioElement = document.getElementById("modelaudio");
+
+      console.log(modalgenderElement)
+      modalgenderElement.innerHTML = gender;
+      modalageElement.innerHTML = age;
+      modaltranscriptionElement.innerHTML = transcription
+
+      var audioElement = document.createElement("AUDIO");
+      audioElement.setAttribute("src", audiopath);
+      audioElement.setAttribute("controls", "controls");
+      modalaudioElement.innerHTML = ""
+      modalaudioElement.appendChild(audioElement);
+
+
+      // Display the pop-up window
+      const modal = document.querySelector('.modal');
+      const closeButton = document.querySelector('.close');
+      const acceptButton = document.querySelector('.mark-processed');
+      modal.style.display = 'block';
+
+      // Add an event listener to the close button to hide the modal
+      closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      acceptButton.addEventListener('click', () => {
+        console.log(id)
+        fetch('mark_audio_unprocessed', {
+          method: 'POST',
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ "audio_id": id })
+        })
+          .then(response => response.json())
+          .then(response => {
+            window.location.href = "/processedaudio"
+            console.log(JSON.stringify(response))
+          })
+      });
+
+
+    });
+  });
+
+</script>
+
+{% endblock js %}
